@@ -4,9 +4,59 @@ const quoteList = document.querySelector("#quote-list");
 const quoteForm = document.querySelector("#new-quote-form");
 
 //functions and event listeners
+function buttonEvent(event){
+    let btnType = event.target.className;
+    let card = event.target.parentElement.parentElement;
+        let id = card.dataset.id;
+    if(btnType === 'btn-success'){
+        let likes = parseInt(event.target.lastChild.innerText, 10) + 1;
+        fetch(`http://localhost:3000/likes`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    quoteId: id
+                })
+            }).then(resp => resp.json())
+            .then(event.target.innerHTML = `Likes: <span>${likes}</span>`);
+    } else if(btnType === 'btn-danger'){
+        fetch(`http://localhost:3000/quotes/${id}`, {
+                method: 'DELETE'
+            })
+            .then(quoteList.removeChild(card));
+    };
+}
+
+// function deleteButton(event){
+//     let card = event.target.parentElement.parentElement;
+//     let id = card.dataset.id;
+//     fetch(`http://localhost:3000/quotes/${id}`, {
+//             method: 'DELETE'
+//         })
+//         .then(quoteList.removeChild(card));
+// }
+
+// function likeButton(event){
+//     let card = event.target.parentElement.parentElement;
+//     let id = card.dataset.id;
+//     let likes = parseInt(event.target.lastChild.innerText, 10) + 1;
+//     fetch(`http://localhost:3000/likes`, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify({
+//                 quoteId: id
+//             })
+//         }).then(resp => resp.json())
+//         .then(event.target.innerHTML = `Likes: <span>${likes}</span>`);
+// }
+
 function renderQuote(quote) {
     let card = document.createElement("li");
     card.className = 'quote-card';
+    card.setAttribute('data-id', quote.id)
 
     let block = document.createElement("blockquote");
     block.className = 'blockquote';
@@ -21,29 +71,14 @@ function renderQuote(quote) {
 
     let likeBtn = document.createElement("button");
     likeBtn.className = "btn-success";
-    let likes = 0;
-    likeBtn.innerHTML = `Likes: <span>${likes}</span>`
-    likeBtn.addEventListener('click', function(){
-        fetch(`http://localhost:3000/likes`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                quoteId: quote.id
-            })
-        }).then(resp => resp.json())
-        .then(likeBtn.innerHTML = `Likes: <span>${++likes}</span>`);
-    });
+    likeBtn.innerHTML = `Likes: <span>0</span>`
+    likeBtn.addEventListener('click', buttonEvent);
+
 
     let delBtn = document.createElement("button");
     delBtn.className = "btn-danger";
     delBtn.innerText = "Delete";
-    delBtn.addEventListener('click', function(){      
-        fetch(`http://localhost:3000/quotes/${quote.id}`, {
-            method: 'DELETE'
-        }).then(quoteList.removeChild(card));
-    });
+    delBtn.addEventListener('click', buttonEvent);
 
     block.append(p, footer, likeBtn, delBtn);
     card.appendChild(block);
