@@ -1,11 +1,6 @@
 {
   "quotes": [
     {
-      "id": 1,
-      "quote": "Expect nothing. Live frugally on surprise.",
-      "author": "Alice Walker"
-    },
-    {
       "id": 2,
       "quote": "Y’all is the best, most inclusive, second-person, plural pronoun in the English-speaking world.",
       "author": "Hannah Gadsby"
@@ -58,14 +53,81 @@
   ],
   "likes": [
     {
-      "id": 1,
-      "quoteId": 1,
-      "createdAt": 1558524356
-    },
-    {
       "quoteId": 10,
       "id": 2,
       "createdAt": 1558524358
+    },
+    {
+      "quoteId": 2,
+      "id": 3
+    },
+    {
+      "quoteId": 5,
+      "id": 4
+    },
+    {
+      "quoteId": 2,
+      "id": 5
+    },
+    {
+      "quoteId": 3,
+      "id": 6
+    },
+    {
+      "quoteId": 4,
+      "id": 7
+    },
+    {
+      "quoteId": 8,
+      "id": 8
+    },
+    {
+      "quoteId": 4,
+      "id": 9
+    },
+    {
+      "quoteId": 4,
+      "id": 10
+    },
+    {
+      "quoteId": 5,
+      "id": 11
+    },
+    {
+      "quoteId": 5,
+      "id": 12
+    },
+    {
+      "quoteId": 5,
+      "id": 13
+    },
+    {
+      "quoteId": 9,
+      "id": 14
+    },
+    {
+      "quoteId": 9,
+      "id": 15
+    },
+    {
+      "quoteId": 11,
+      "id": 16
+    },
+    {
+      "quoteId": 10,
+      "id": 17
+    },
+    {
+      "quoteId": 9,
+      "id": 18
+    },
+    {
+      "quoteId": 9,
+      "id": 19
+    },
+    {
+      "quoteId": 9,
+      "id": 20
     }
   ]
 }
